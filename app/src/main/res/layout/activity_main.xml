@@ -1,0 +1,289 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#000000">
+
+    <!-- ── 1. Caméra QR — visible à travers le trou du ScanOverlayView ────────── -->
+    <androidx.camera.view.PreviewView
+        android:id="@+id/previewView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <!-- ── 2. Fond bleu-ciel clair avec trou transparent sur le cadre QR ───────── -->
+    <com.volt.terminal.ScanOverlayView
+        android:id="@+id/scanOverlayView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible"/>
+
+    <!-- ══ 3. ÉCRAN ACTIF (SCANNING) ════════════════════════════════════════════ -->
+    <FrameLayout
+        android:id="@+id/layoutScanning"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="visible">
+
+        <!-- 3a. Bulles d'eau interactives — couche de fond -->
+        <com.volt.terminal.BubbleFruitView
+            android:id="@+id/bubbleFruitView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <!-- 3b. Vagues sinusoïdales animées en bas (effet océan) -->
+        <com.volt.terminal.WaveView
+            android:id="@+id/waveView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <!-- 3c. Sparkles — étoiles à 4 branches qui scintillent (lumière sur l'eau) -->
+        <com.volt.terminal.SparkleView
+            android:id="@+id/sparkleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <!-- 3d. Gouttes d'eau autonomes → ondulations qui s'élargissent -->
+        <com.volt.terminal.DropRippleView
+            android:id="@+id/dropRippleView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <!-- 3e. VOLT. logo en haut, pleine largeur, centré — sur fond clair -->
+        <TextView
+            android:id="@+id/tvVoltLogoScan"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top|center_horizontal"
+            android:layout_marginTop="42dp"
+            android:gravity="center"
+            android:text="VOLT."
+            android:textSize="72sp"
+            android:textStyle="bold"
+            android:textColor="#FF001840"
+            android:letterSpacing="-0.06"
+            android:shadowColor="#440055CC"
+            android:shadowDx="0"
+            android:shadowDy="0"
+            android:shadowRadius="18"/>
+
+        <!-- 3c. Scanner + hint centrés verticalement dans l'écran -->
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <!-- Scanner QR animé : coins lumineux + laser -->
+            <com.volt.terminal.ScannerView
+                android:id="@+id/scannerView"
+                android:layout_width="260dp"
+                android:layout_height="260dp"/>
+
+            <!-- Indication sous le scanner -->
+            <TextView
+                android:id="@+id/tvScanHint"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:text="Présente ton QR code"
+                android:textSize="17sp"
+                android:textColor="#EE002277"
+                android:shadowColor="#220000AA"
+                android:shadowDx="0"
+                android:shadowDy="1"
+                android:shadowRadius="4"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <!-- ══ 4. OVERLAY RÉSULTAT : PROCESSING / SUCCESS / COOLDOWN / ERROR ════════ -->
+    <FrameLayout
+        android:id="@+id/layoutOverlay"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:id="@+id/layoutResult"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:padding="48dp">
+
+            <TextView
+                android:id="@+id/tvResultIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="96sp"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:layout_marginBottom="24dp"/>
+
+            <TextView
+                android:id="@+id/tvResultTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFF"
+                android:gravity="center"
+                android:layout_marginBottom="12dp"/>
+
+            <TextView
+                android:id="@+id/tvResultSub"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textSize="17sp"
+                android:textColor="#CCFFFFFF"
+                android:gravity="center"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <!-- ══ 5. JOURNAL DIAGNOSTIC — caché, visible uniquement en mode admin ═══════ -->
+    <LinearLayout
+        android:id="@+id/layoutDiag"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_gravity="top"
+        android:orientation="vertical"
+        android:background="#DD000000"
+        android:visibility="gone">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="6dp"
+            android:paddingBottom="4dp">
+
+            <TextView
+                android:id="@+id/tvDiagTime"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:textColor="#FFFFFFFF"
+                android:textSize="13sp"
+                android:fontFamily="monospace"
+                android:text="--:--:--  --/--/----"/>
+
+            <TextView
+                android:id="@+id/tvDiagClear"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="[ EFFACER ]"
+                android:textColor="#FF888888"
+                android:textSize="12sp"
+                android:padding="4dp"/>
+
+        </LinearLayout>
+
+        <ScrollView
+            android:id="@+id/scrollDiag"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingBottom="6dp">
+
+            <TextView
+                android:id="@+id/tvDiagMdb"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FF00FF88"
+                android:textSize="12sp"
+                android:fontFamily="monospace"
+                android:text="--- Journal MDB ---"/>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+    <!-- ══ 6. ÉCRAN PAUSE CM30 — couvre tout, tap = écran actif ═════════════════ -->
+    <FrameLayout
+        android:id="@+id/layoutPause"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@drawable/bg_pause"
+        android:clickable="true"
+        android:focusable="true"
+        android:visibility="gone">
+
+        <com.volt.terminal.PauseAnimView
+            android:id="@+id/pauseAnimView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:orientation="vertical"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/tvVoltLogoPause"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="VOLT."
+                android:textSize="72sp"
+                android:textStyle="bold"
+                android:textColor="#FFFFFFFF"
+                android:letterSpacing="-0.06"
+                android:shadowColor="#880057FF"
+                android:shadowDx="0"
+                android:shadowDy="0"
+                android:shadowRadius="28"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="TOUCHE L'ÉCRAN POUR COMMENCER"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="#99FFFFFF"
+                android:letterSpacing="0.15"/>
+
+        </LinearLayout>
+
+    </FrameLayout>
+
+    <!-- ══ 7. PLUIE DE FRUITS — 5s à la reprise de la CM30 ══════════════════════ -->
+    <com.volt.terminal.FruitRainView
+        android:id="@+id/fruitRainView"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <!-- ══ 8. Logo VOLT. en bas — EN DERNIER = toujours au premier plan ══════════
+              Long press 3s = accès admin                                          -->
+    <TextView
+        android:id="@+id/tvVoltLogo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom|center_horizontal"
+        android:layout_marginBottom="28dp"
+        android:text="VOLT."
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:textColor="#DDFFFFFF"
+        android:letterSpacing="-0.04"
+        android:shadowColor="#AA000000"
+        android:shadowDx="0"
+        android:shadowDy="1"
+        android:shadowRadius="8"
+        android:paddingLeft="28dp"
+        android:paddingRight="28dp"
+        android:paddingTop="14dp"
+        android:paddingBottom="14dp"/>
+
+</FrameLayout>

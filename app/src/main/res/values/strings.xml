@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">VOLT.</string>
+
+    <!-- Scanning -->
+    <string name="state_scanning">Scanne ton QR code</string>
+    <string name="state_scanning_sub">Présente l\'application devant le lecteur</string>
+
+    <!-- Processing -->
+    <string name="state_processing">Vérification…</string>
+    <string name="state_processing_sub">Validation de ton abonnement</string>
+
+    <!-- Success -->
+    <string name="success_greeting">Bonjour %1$s !</string>
+    <string name="success_message">Accès accordé !</string>
+    <string name="success_sub">Bonne dégustation ⚡</string>
+
+    <!-- Cooldown -->
+    <string name="cooldown_message">Déjà scanné récemment</string>
+    <string name="cooldown_sub">Attends avant de reprendre une boisson</string>
+
+    <!-- Error -->
+    <string name="error_message">Accès refusé</string>
+    <string name="error_sub">Vérifie ton abonnement sur l\'app VOLT.</string>
+    <string name="error_not_subscribed">Aucun abonnement actif</string>
+    <string name="error_expired">QR code expiré — recharge l\'app</string>
+
+    <!-- Blocked -->
+    <string name="blocked_message">Compte bloqué</string>
+    <string name="blocked_sub">Contacte le responsable du fitness</string>
+
+    <!-- Waiting for product selection (machine already dispensing) -->
+    <string name="waiting_message">Crédit accordé ⚡</string>
+    <string name="waiting_sub">Distribution en cours…</string>
+
+    <!-- QR pré-autorisé : en attente que l'utilisateur sélectionne une boisson -->
+    <string name="waiting_sub_select">Sélectionnez votre boisson sur la machine</string>
+
+    <!-- QR pré-autorisé : retry après échec machine (crédit encore valide) -->
+    <string name="credit_retry_title">Crédit actif — réessayez ⚡</string>
+    <string name="credit_retry_sub">Resélectionnez votre boisson sur la machine</string>
+
+    <!-- Vend failed -->
+    <string name="vend_failed_message">Distribution échouée</string>
+    <string name="vend_failed_sub">Rescannez votre QR puis sélectionnez votre boisson</string>
+</resources>

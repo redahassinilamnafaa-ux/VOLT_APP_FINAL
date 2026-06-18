@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Viseur QR : 4 coins bleus, fond transparent -->
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Coin haut-gauche -->
+    <item android:top="0dp" android:left="0dp" android:right="220dp" android:bottom="220dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#0057FF"/>
+            <corners android:topLeftRadius="4dp"/>
+            <size android:width="40dp" android:height="40dp"/>
+        </shape>
+    </item>
+    <!-- Coin haut-droit -->
+    <item android:top="0dp" android:left="220dp" android:right="0dp" android:bottom="220dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#0057FF"/>
+            <corners android:topRightRadius="4dp"/>
+            <size android:width="40dp" android:height="40dp"/>
+        </shape>
+    </item>
+    <!-- Coin bas-gauche -->
+    <item android:top="220dp" android:left="0dp" android:right="220dp" android:bottom="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#0057FF"/>
+            <corners android:bottomLeftRadius="4dp"/>
+            <size android:width="40dp" android:height="40dp"/>
+        </shape>
+    </item>
+    <!-- Coin bas-droit -->
+    <item android:top="220dp" android:left="220dp" android:right="0dp" android:bottom="0dp">
+        <shape android:shape="rectangle">
+            <solid android:color="#0057FF"/>
+            <corners android:bottomRightRadius="4dp"/>
+            <size android:width="40dp" android:height="40dp"/>
+        </shape>
+    </item>
+</layer-list>
